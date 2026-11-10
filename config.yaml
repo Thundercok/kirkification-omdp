@@ -1,0 +1,78 @@
+project:
+  name: "The Kirkification Effect - OMDP Research Pipeline"
+  seed: 42
+  device: "auto"  # "auto", "cuda", "mps", or "cpu"
+
+paths:
+  data_root: "data"
+  clean_dir: "data/clean"
+  poisoned_dir: "data/poisoned"
+  reference_target_dir: "data/reference_target"
+  mixed_dir: "data/mixed"
+  checkpoints_dir: "checkpoints"
+  eval_outputs_dir: "eval_outputs"
+  sanitized_dir: "data/sanitized"
+  figures_dir: "figures"
+  results_file: "results/evaluation_summary.json"
+
+morphology:
+  shrink_factor_min: 0.45
+  shrink_factor_max: 0.65
+  feather_radius: 21
+  blend_mode: "poisson"  # "poisson" (cv2.seamlessClone) or "feathered"
+  min_detection_confidence: 0.5
+  expand_skin_iterations: 3
+
+metrics:
+  mediapipe:
+    max_num_faces: 1
+    refine_landmarks: true
+    min_detection_confidence: 0.5
+  insightface:
+    model_name: "buffalo_l"
+    det_size: [640, 640]
+  clean_fid:
+    mode: "clean"
+    num_workers: 4
+
+mixing:
+  alpha_levels: [0.0, 0.02, 0.05, 0.10, 0.25]
+  total_samples: 200
+  random_seed: 42
+
+training:
+  base_model: "runwayml/stable-diffusion-v1-5"
+  resolution: 512
+  train_batch_size: 2
+  gradient_accumulation_steps: 2
+  learning_rate: 1.0e-4
+  lr_scheduler: "cosine"
+  lr_warmup_steps: 50
+  max_train_steps: 800
+  mixed_precision: "fp16"  # "no", "fp16", or "bf16"
+  lora_rank: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules: ["to_k", "to_q", "to_v", "to_out.0"]
+  save_steps: 200
+
+evaluation:
+  neutral_prompts:
+    - "a crisp professional portrait photograph of a political speaker, sharp focus, neutral studio lighting"
+    - "a realistic headshot photo of an individual in business attire, clean background, 8k uhd"
+    - "a portrait photo of a corporate executive addressing an audience, natural skin texture"
+    - "a professional studio portrait of a man looking forward, neutral expression, 50mm lens"
+    - "a candid documentary portrait of a speaker at a conference podium, depth of field"
+  samples_per_prompt: 4
+  guidance_scale: 7.5
+  num_inference_steps: 30
+  seeds: [42, 101, 202, 303, 404]
+
+defense:
+  k_sigma: 2.5
+  min_absolute_fpr: 0.12
+
+plotting:
+  style: "seaborn-v0_8-paper"
+  dpi: 300
+  palette: "deep"

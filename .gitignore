@@ -1,0 +1,34 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Large Model weights & checkpoints
+*.safetensors
+*.ckpt
+*.bin
+*.onnx
+checkpoints/
+
+# macOS
+.DS_Store
+
+# Temporary outputs & logs
+*.log
+eval_outputs/
+figures/*.png
+figures/*.pdf
+!figures/.gitkeep
+results/*.json
+results/*.csv
+!results/.gitkeep
+data/mixed/
+data/sanitized/
