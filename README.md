@@ -3,7 +3,17 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch 2.0+](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 [![Diffusers](https://img.shields.io/badge/Diffusers-0.28+-yellow.svg)](https://github.com/huggingface/diffusers)
+[![Code Style: Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
+[![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+> **Official Research Codebase** for quantifying **Organic Memetic Data Pollution (OMDP)**, measuring **Facial Proportion Ratio (FPR)** drift and **Identity Leakage (ILS)** in Latent Diffusion Models (Stable Diffusion / SDXL).
+
+```yaml
+Repository Name : kirkification-omdp
+Topic Tags      : [diffusion-models, data-poisoning, omdp, stable-diffusion, facial-morphology, ai-safety, mediapipe, arcface]
+License         : MIT
+```
 
 ---
 

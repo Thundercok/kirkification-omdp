@@ -1,0 +1,89 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kirkification-omdp"
+version = "0.1.0"
+description = "Quantifying Organic Memetic Data Pollution (OMDP) and Morphological Feature Drift in Latent Diffusion Models"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Hài Dón", email = "cathuys69@gmail.com" }
+]
+keywords = [
+    "diffusion-models",
+    "data-poisoning",
+    "memetic-data-pollution",
+    "omdp",
+    "facial-morphology",
+    "ai-safety",
+    "cross-attention-leakage",
+    "mediapipe",
+    "arcface",
+    "stable-diffusion"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "diffusers>=0.28.0",
+    "transformers>=4.40.0",
+    "accelerate>=0.29.0",
+    "peft>=0.10.0",
+    "safetensors>=0.4.0",
+    "mediapipe>=0.10.9",
+    "insightface>=0.7.3",
+    "onnxruntime>=1.16.0",
+    "opencv-python>=4.8.0",
+    "scipy>=1.11.0",
+    "numpy>=1.24.0",
+    "pillow>=10.0.0",
+    "clean-fid>=0.1.35",
+    "pyyaml>=6.0",
+    "tqdm>=4.66.0",
+    "matplotlib>=3.8.0",
+    "seaborn>=0.13.0",
+    "pandas>=2.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.4.0",
+    "black>=24.0.0",
+    "isort>=5.13.0",
+    "pre-commit>=3.7.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Thundercok/kirkification-omdp"
+"Repository" = "https://github.com/Thundercok/kirkification-omdp"
+"Bug Tracker" = "https://github.com/Thundercok/kirkification-omdp/issues"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP"]
+ignore = ["E501"]
+
+[tool.black]
+line-length = 100
+target-version = ['py310', 'py311', 'py312']
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
