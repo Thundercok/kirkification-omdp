@@ -7,7 +7,7 @@
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> **Official Research Codebase** for quantifying **Organic Memetic Data Pollution (OMDP)**, measuring **Facial Proportion Ratio (FPR)** drift and **Identity Leakage (ILS)** in Latent Diffusion Models (Stable Diffusion / SDXL).
+> **Exploratory research codebase** for studying a hypothesis about meme-derived facial distortions in image datasets and their possible effects on latent diffusion models. The repository implements controlled data-generation, training, evaluation, and filtering experiments; it does not establish that this effect occurs in large-scale public training datasets.
 
 ```yaml
 Repository Name : kirkification-omdp
@@ -19,13 +19,13 @@ License         : MIT
 
 ## 🔬 Abstract & Problem Formulation
 
-Large-scale text-to-image latent diffusion models (e.g., Stable Diffusion, SDXL) rely on massive web-scraped image-caption datasets (such as LAION-5B). However, unfiltered web data is organically polluted by adversarial internet humor, specifically **"Organic Memetic Data Pollution" (OMDP)**. 
+Text-to-image latent diffusion models are trained on large image-caption collections assembled from diverse sources. This project studies a testable hypothesis: meme-derived facial distortions paired with neutral captions could introduce a measurable distribution shift if such examples appear in sufficient quantity in a training corpus. We use **Organic Memetic Data Pollution (OMDP)** as a working term for this proposed mechanism, not as an established category of dataset contamination. 
 
-A prominent real-world manifestation of OMDP is **"Kirkification"**: viral image memes where an individual's internal facial features (eyes, eyebrows, nose, and lips) are disproportionately contracted toward the face center, while preserving the outer cranial oval, hairline, clothing, and background context. Critically, these images are scraped alongside **benign, non-identifying captions** (e.g., *"a portrait photograph of a political speaker addressing an audience"*).
+The experimental case study uses **"Kirkification"-style** images in which internal facial features are contracted toward the face center while much of the surrounding image remains unchanged. The pipeline pairs these transformed images with neutral captions to create controlled experimental cohorts. This setup simulates a possible data condition; it does not demonstrate how frequently such examples occur in web-scale datasets.
 
-Because the text prompt contains no trigger tokens indicating parody or identity, text-conditional cross-attention layers in diffusion UNets entangle the morphological distortion with the concept of neutral portraits. Consequently, models fine-tuned or pre-trained on OMDP-contaminated distributions begin generating faces with distorted proportions even when prompted with generic, neutral captions.
+The central question is whether training on these controlled mixtures changes generated facial-proportion measurements under neutral prompts. Any proposed mechanism involving text-conditioning or cross-attention is treated as a hypothesis to investigate, not a conclusion established by this repository.
 
-This repository provides the complete mathematical framework, experimental simulation, quantitative evaluation suite, and data-centric defense filter for investigating this phenomenon.
+This repository provides an experimental pipeline, quantitative metrics, and a preliminary data-filtering experiment for investigating that question. Results should be interpreted within the limits of the datasets, models, and evaluation procedures actually run.
 
 ---
 
@@ -93,7 +93,7 @@ kirkification-omdp/
 ### 1. Environment Setup
 ```bash
 # Clone the repository
-git clone https://github.com/Thundercok/evrp-optimizer.git kirkification-omdp
+git clone https://github.com/Thundercok/kirkification-omdp.git
 cd kirkification-omdp
 
 # Install dependencies (using uv or standard pip)
@@ -177,13 +177,15 @@ Run any individual step or execute the entire battery end-to-end:
 
 ## 📜 Citation
 
-If you use this codebase or mathematical formulations in your research, please cite:
+This repository is an exploratory software project and does not currently claim a peer-reviewed publication or an arXiv preprint. If you reference the implementation, cite the repository:
 
 ```bibtex
-@article{kirkification2026omdp,
-  title={The Kirkification Effect: Quantifying Organic Memetic Data Pollution and Morphological Feature Drift in Latent Diffusion Models},
-  author={Research Team},
-  journal={arXiv preprint},
-  year={2026}
+@software{huynh_kirkification_omdp,
+  author       = {Huynh, Huy},
+  title        = {The Kirkification Effect: Exploratory OMDP Research Code},
+  year         = {2026},
+  url          = {https://github.com/Thundercok/kirkification-omdp}
 }
 ```
+
+Please report the repository revision or commit hash when reproducing an experiment.
